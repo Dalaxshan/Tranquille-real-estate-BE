@@ -1,0 +1,161 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id         String   @id @default(uuid())
+  supabaseId String   @unique
+  username   String   @unique
+  email      String   @unique
+  employeeId String   @unique
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  properties Property[]
+  branches   Branch[]
+}
+
+model Property {
+  id              Int      @id @default(autoincrement())
+  title           String
+  location        String
+  lat             Float
+  lng             Float
+  embedUrl        String
+  virtualTourUrl  String?
+  bedrooms        Int?
+  price           String
+  priceValue      Float
+  city            City
+  type            PropertyType
+  landType        LandType
+  category        PropertyCategory
+  area            String
+  description     String
+  images          String[]
+  features        String[]
+  postedDate      DateTime @default(now())
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  blueprint       Blueprint?
+  agent           Agent?
+  statistics      PropertyStatistics?
+  reviews         Review[]
+
+  createdBy       User     @relation(fields: [userId], references: [id])
+  userId          String
+}
+
+model Blueprint {
+  id         Int      @id @default(autoincrement())
+  title      String
+  fileUrl    String
+  fileName   String
+  fileType   String?
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId Int      @unique
+}
+
+model Agent {
+  id         Int      @id @default(autoincrement())
+  name       String
+  image      String
+  phone      String
+  email      String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId Int      @unique
+}
+
+model PropertyStatistics {
+  id          Int           @id @default(autoincrement())
+  property    Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId  Int           @unique
+  views       ViewStat[]
+  priceHistory PriceHistory[]
+}
+
+model ViewStat {
+  id           Int                @id @default(autoincrement())
+  month        String
+  value        Int
+  statistics   PropertyStatistics @relation(fields: [statisticsId], references: [id], onDelete: Cascade)
+  statisticsId Int
+}
+
+model PriceHistory {
+  id           Int                @id @default(autoincrement())
+  year         Int
+  price        Float
+  statistics   PropertyStatistics @relation(fields: [statisticsId], references: [id], onDelete: Cascade)
+  statisticsId Int
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  user       String
+  avatar     String
+  rating     Int
+  date       DateTime @default(now())
+  comment    String
+  property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
+  propertyId Int
+}
+
+model Branch {
+  id           String   @id @default(uuid())
+  city         String
+  name         String
+  address      String
+  phone        String
+  email        String
+  manager      String
+  timings      String
+  mapLink      String
+  image        String
+  isHeadOffice Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  createdBy    User     @relation(fields: [userId], references: [id])
+  userId       String
+}
+
+enum City {
+  Colombo
+  Galle
+  Kurunegala
+  Nugegoda
+  Rajagiriya
+  Wattala
+}
+
+enum PropertyType {
+  FOR_SALE
+  FOR_RENT
+}
+
+enum LandType {
+  Sale
+  Rent
+}
+
+enum PropertyCategory {
+  Agricultural
+  Residential
+  Commercial
+  Houses
+  Apartment
+  Villas
+}
