@@ -8,7 +8,7 @@ import { CreatePropertyDto } from './dto/create-property.dto';
 
 @Injectable()
 export class PropertiesService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private prisma: PrismaService) { }
 
   async create(userId: string, dto: CreatePropertyDto) {
     const { blueprint, agent, statistics, ...rest } = dto;
@@ -52,13 +52,13 @@ export class PropertiesService {
     });
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     const property = await this.prisma.property.findUnique({
       where: { id },
       include: {
         blueprint: true,
         agent: true,
-        statistics: { include: { views: true, priceHistory: true } },
+        // statistics: { include: { views: true, priceHistory: true } },
         reviews: true,
       },
     });
@@ -66,20 +66,52 @@ export class PropertiesService {
     return property;
   }
 
-  async update(id: number, userId: string, dto: Partial<CreatePropertyDto>) {
+  async update(id: string, userId: string, dto: Partial<CreatePropertyDto>) {
     const property = await this.prisma.property.findUnique({ where: { id } });
 
     if (!property) throw new NotFoundException('Property not found');
     if (property.userId !== userId) throw new ForbiddenException();
-    const { blueprint, agent, ...rest } = dto || {};
+
+    const { blueprint, agent, statistics, ...rest } = dto || {};
+
+    const {
+      id: _id,
+      createdAt,
+      updatedAt,
+      userId: _userId,
+      reviews,
+      ...updateData
+    } = rest as any;
+
+    // Strip id and propertyId from blueprint/agent before passing to Prisma
+    const cleanBlueprint = blueprint
+      ? (({ id, propertyId, ...b }) => b)(blueprint as any)
+      : null;
+
+    const cleanAgent = agent
+      ? (({ id, propertyId, ...a }) => a)(agent as any)
+      : null;
+
     return await this.prisma.property.update({
       where: { id },
       data: {
-        ...rest,
-        ...(blueprint && {
-          blueprint: { upsert: { create: blueprint, update: blueprint } },
+        ...updateData,
+        ...(cleanBlueprint && {
+          blueprint: {
+            upsert: {
+              create: cleanBlueprint,
+              update: cleanBlueprint,
+            },
+          },
         }),
-        ...(agent && { agent: { upsert: { create: agent, update: agent } } }),
+        ...(cleanAgent && {
+          agent: {
+            upsert: {
+              create: cleanAgent,
+              update: cleanAgent,
+            },
+          },
+        }),
       },
       include: {
         blueprint: true,
@@ -90,11 +122,24 @@ export class PropertiesService {
     });
   }
 
-  async remove(id: number, userId: string) {
+  async remove(id: string, userId: string) {
     const property = await this.prisma.property.findUnique({ where: { id } });
     if (!property) throw new NotFoundException('Property not found');
     if (property.userId !== userId) throw new ForbiddenException();
     await this.prisma.property.delete({ where: { id } });
     return { message: `Property id: ${id} deleted` };
   }
+
+  async getDashboardStats() {
+    const [totalProperties, totalBranches] = await this.prisma.$transaction([
+      this.prisma.property.count(),
+      this.prisma.branch.count(),
+    ]);
+
+    return {
+      totalProperties,
+      totalBranches,
+    };
+  }
+
 }

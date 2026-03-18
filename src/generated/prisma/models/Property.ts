@@ -27,7 +27,6 @@ export type AggregateProperty = {
 }
 
 export type PropertyAvgAggregateOutputType = {
-  id: number | null
   lat: number | null
   lng: number | null
   bedrooms: number | null
@@ -35,7 +34,6 @@ export type PropertyAvgAggregateOutputType = {
 }
 
 export type PropertySumAggregateOutputType = {
-  id: number | null
   lat: number | null
   lng: number | null
   bedrooms: number | null
@@ -43,7 +41,7 @@ export type PropertySumAggregateOutputType = {
 }
 
 export type PropertyMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   title: string | null
   location: string | null
   lat: number | null
@@ -66,7 +64,7 @@ export type PropertyMinAggregateOutputType = {
 }
 
 export type PropertyMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   title: string | null
   location: string | null
   lat: number | null
@@ -116,7 +114,6 @@ export type PropertyCountAggregateOutputType = {
 
 
 export type PropertyAvgAggregateInputType = {
-  id?: true
   lat?: true
   lng?: true
   bedrooms?: true
@@ -124,7 +121,6 @@ export type PropertyAvgAggregateInputType = {
 }
 
 export type PropertySumAggregateInputType = {
-  id?: true
   lat?: true
   lng?: true
   bedrooms?: true
@@ -290,7 +286,7 @@ export type PropertyGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 }
 
 export type PropertyGroupByOutputType = {
-  id: number
+  id: string
   title: string
   location: string
   lat: number
@@ -338,7 +334,7 @@ export type PropertyWhereInput = {
   AND?: Prisma.PropertyWhereInput | Prisma.PropertyWhereInput[]
   OR?: Prisma.PropertyWhereInput[]
   NOT?: Prisma.PropertyWhereInput | Prisma.PropertyWhereInput[]
-  id?: Prisma.IntFilter<"Property"> | number
+  id?: Prisma.StringFilter<"Property"> | string
   title?: Prisma.StringFilter<"Property"> | string
   location?: Prisma.StringFilter<"Property"> | string
   lat?: Prisma.FloatFilter<"Property"> | number
@@ -398,7 +394,7 @@ export type PropertyOrderByWithRelationInput = {
 }
 
 export type PropertyWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
+  id?: string
   AND?: Prisma.PropertyWhereInput | Prisma.PropertyWhereInput[]
   OR?: Prisma.PropertyWhereInput[]
   NOT?: Prisma.PropertyWhereInput | Prisma.PropertyWhereInput[]
@@ -464,7 +460,7 @@ export type PropertyScalarWhereWithAggregatesInput = {
   AND?: Prisma.PropertyScalarWhereWithAggregatesInput | Prisma.PropertyScalarWhereWithAggregatesInput[]
   OR?: Prisma.PropertyScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PropertyScalarWhereWithAggregatesInput | Prisma.PropertyScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Property"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Property"> | string
   title?: Prisma.StringWithAggregatesFilter<"Property"> | string
   location?: Prisma.StringWithAggregatesFilter<"Property"> | string
   lat?: Prisma.FloatWithAggregatesFilter<"Property"> | number
@@ -489,6 +485,7 @@ export type PropertyScalarWhereWithAggregatesInput = {
 }
 
 export type PropertyCreateInput = {
+  id?: string
   title: string
   location: string
   lat: number
@@ -517,7 +514,7 @@ export type PropertyCreateInput = {
 }
 
 export type PropertyUncheckedCreateInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -546,6 +543,7 @@ export type PropertyUncheckedCreateInput = {
 }
 
 export type PropertyUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -574,7 +572,7 @@ export type PropertyUpdateInput = {
 }
 
 export type PropertyUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -603,7 +601,7 @@ export type PropertyUncheckedUpdateInput = {
 }
 
 export type PropertyCreateManyInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -628,6 +626,7 @@ export type PropertyCreateManyInput = {
 }
 
 export type PropertyUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -651,7 +650,7 @@ export type PropertyUpdateManyMutationInput = {
 }
 
 export type PropertyUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -719,7 +718,6 @@ export type PropertyCountOrderByAggregateInput = {
 }
 
 export type PropertyAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   bedrooms?: Prisma.SortOrder
@@ -773,7 +771,6 @@ export type PropertyMinOrderByAggregateInput = {
 }
 
 export type PropertySumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   lat?: Prisma.SortOrder
   lng?: Prisma.SortOrder
   bedrooms?: Prisma.SortOrder
@@ -881,14 +878,6 @@ export type PropertyUpdatefeaturesInput = {
   push?: string | string[]
 }
 
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type PropertyCreateNestedOneWithoutBlueprintInput = {
   create?: Prisma.XOR<Prisma.PropertyCreateWithoutBlueprintInput, Prisma.PropertyUncheckedCreateWithoutBlueprintInput>
   connectOrCreate?: Prisma.PropertyCreateOrConnectWithoutBlueprintInput
@@ -946,6 +935,7 @@ export type PropertyUpdateOneRequiredWithoutReviewsNestedInput = {
 }
 
 export type PropertyCreateWithoutCreatedByInput = {
+  id?: string
   title: string
   location: string
   lat: number
@@ -973,7 +963,7 @@ export type PropertyCreateWithoutCreatedByInput = {
 }
 
 export type PropertyUncheckedCreateWithoutCreatedByInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -1030,7 +1020,7 @@ export type PropertyScalarWhereInput = {
   AND?: Prisma.PropertyScalarWhereInput | Prisma.PropertyScalarWhereInput[]
   OR?: Prisma.PropertyScalarWhereInput[]
   NOT?: Prisma.PropertyScalarWhereInput | Prisma.PropertyScalarWhereInput[]
-  id?: Prisma.IntFilter<"Property"> | number
+  id?: Prisma.StringFilter<"Property"> | string
   title?: Prisma.StringFilter<"Property"> | string
   location?: Prisma.StringFilter<"Property"> | string
   lat?: Prisma.FloatFilter<"Property"> | number
@@ -1055,6 +1045,7 @@ export type PropertyScalarWhereInput = {
 }
 
 export type PropertyCreateWithoutBlueprintInput = {
+  id?: string
   title: string
   location: string
   lat: number
@@ -1082,7 +1073,7 @@ export type PropertyCreateWithoutBlueprintInput = {
 }
 
 export type PropertyUncheckedCreateWithoutBlueprintInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -1126,6 +1117,7 @@ export type PropertyUpdateToOneWithWhereWithoutBlueprintInput = {
 }
 
 export type PropertyUpdateWithoutBlueprintInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1153,7 +1145,7 @@ export type PropertyUpdateWithoutBlueprintInput = {
 }
 
 export type PropertyUncheckedUpdateWithoutBlueprintInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1181,6 +1173,7 @@ export type PropertyUncheckedUpdateWithoutBlueprintInput = {
 }
 
 export type PropertyCreateWithoutAgentInput = {
+  id?: string
   title: string
   location: string
   lat: number
@@ -1208,7 +1201,7 @@ export type PropertyCreateWithoutAgentInput = {
 }
 
 export type PropertyUncheckedCreateWithoutAgentInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -1252,6 +1245,7 @@ export type PropertyUpdateToOneWithWhereWithoutAgentInput = {
 }
 
 export type PropertyUpdateWithoutAgentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1279,7 +1273,7 @@ export type PropertyUpdateWithoutAgentInput = {
 }
 
 export type PropertyUncheckedUpdateWithoutAgentInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1307,6 +1301,7 @@ export type PropertyUncheckedUpdateWithoutAgentInput = {
 }
 
 export type PropertyCreateWithoutStatisticsInput = {
+  id?: string
   title: string
   location: string
   lat: number
@@ -1334,7 +1329,7 @@ export type PropertyCreateWithoutStatisticsInput = {
 }
 
 export type PropertyUncheckedCreateWithoutStatisticsInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -1378,6 +1373,7 @@ export type PropertyUpdateToOneWithWhereWithoutStatisticsInput = {
 }
 
 export type PropertyUpdateWithoutStatisticsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1405,7 +1401,7 @@ export type PropertyUpdateWithoutStatisticsInput = {
 }
 
 export type PropertyUncheckedUpdateWithoutStatisticsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1433,6 +1429,7 @@ export type PropertyUncheckedUpdateWithoutStatisticsInput = {
 }
 
 export type PropertyCreateWithoutReviewsInput = {
+  id?: string
   title: string
   location: string
   lat: number
@@ -1460,7 +1457,7 @@ export type PropertyCreateWithoutReviewsInput = {
 }
 
 export type PropertyUncheckedCreateWithoutReviewsInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -1504,6 +1501,7 @@ export type PropertyUpdateToOneWithWhereWithoutReviewsInput = {
 }
 
 export type PropertyUpdateWithoutReviewsInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1531,7 +1529,7 @@ export type PropertyUpdateWithoutReviewsInput = {
 }
 
 export type PropertyUncheckedUpdateWithoutReviewsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1559,7 +1557,7 @@ export type PropertyUncheckedUpdateWithoutReviewsInput = {
 }
 
 export type PropertyCreateManyCreatedByInput = {
-  id?: number
+  id?: string
   title: string
   location: string
   lat: number
@@ -1583,6 +1581,7 @@ export type PropertyCreateManyCreatedByInput = {
 }
 
 export type PropertyUpdateWithoutCreatedByInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1610,7 +1609,7 @@ export type PropertyUpdateWithoutCreatedByInput = {
 }
 
 export type PropertyUncheckedUpdateWithoutCreatedByInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1638,7 +1637,7 @@ export type PropertyUncheckedUpdateWithoutCreatedByInput = {
 }
 
 export type PropertyUncheckedUpdateManyWithoutCreatedByInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
   lat?: Prisma.FloatFieldUpdateOperationsInput | number
@@ -1826,7 +1825,7 @@ export type $PropertyPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     createdBy: Prisma.$UserPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     title: string
     location: string
     lat: number
@@ -2276,7 +2275,7 @@ export interface Prisma__PropertyClient<T, Null = never, ExtArgs extends runtime
  * Fields of the Property model
  */
 export interface PropertyFieldRefs {
-  readonly id: Prisma.FieldRef<"Property", 'Int'>
+  readonly id: Prisma.FieldRef<"Property", 'String'>
   readonly title: Prisma.FieldRef<"Property", 'String'>
   readonly location: Prisma.FieldRef<"Property", 'String'>
   readonly lat: Prisma.FieldRef<"Property", 'Float'>

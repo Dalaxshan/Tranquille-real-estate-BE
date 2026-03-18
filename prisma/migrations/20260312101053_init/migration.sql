@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Blueprint" ALTER COLUMN "title" DROP NOT NULL,
+ALTER COLUMN "fileName" DROP NOT NULL;

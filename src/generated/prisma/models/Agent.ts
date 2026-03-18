@@ -20,38 +20,26 @@ export type AgentModel = runtime.Types.Result.DefaultSelection<Prisma.$AgentPayl
 
 export type AggregateAgent = {
   _count: AgentCountAggregateOutputType | null
-  _avg: AgentAvgAggregateOutputType | null
-  _sum: AgentSumAggregateOutputType | null
   _min: AgentMinAggregateOutputType | null
   _max: AgentMaxAggregateOutputType | null
 }
 
-export type AgentAvgAggregateOutputType = {
-  id: number | null
-  propertyId: number | null
-}
-
-export type AgentSumAggregateOutputType = {
-  id: number | null
-  propertyId: number | null
-}
-
 export type AgentMinAggregateOutputType = {
-  id: number | null
+  id: string | null
   name: string | null
   image: string | null
   phone: string | null
   email: string | null
-  propertyId: number | null
+  propertyId: string | null
 }
 
 export type AgentMaxAggregateOutputType = {
-  id: number | null
+  id: string | null
   name: string | null
   image: string | null
   phone: string | null
   email: string | null
-  propertyId: number | null
+  propertyId: string | null
 }
 
 export type AgentCountAggregateOutputType = {
@@ -64,16 +52,6 @@ export type AgentCountAggregateOutputType = {
   _all: number
 }
 
-
-export type AgentAvgAggregateInputType = {
-  id?: true
-  propertyId?: true
-}
-
-export type AgentSumAggregateInputType = {
-  id?: true
-  propertyId?: true
-}
 
 export type AgentMinAggregateInputType = {
   id?: true
@@ -141,18 +119,6 @@ export type AgentAggregateArgs<ExtArgs extends runtime.Types.Extensions.Internal
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
-   * Select which fields to average
-  **/
-  _avg?: AgentAvgAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
-   * Select which fields to sum
-  **/
-  _sum?: AgentSumAggregateInputType
-  /**
-   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-   * 
    * Select which fields to find the minimum value
   **/
   _min?: AgentMinAggregateInputType
@@ -183,22 +149,18 @@ export type AgentGroupByArgs<ExtArgs extends runtime.Types.Extensions.InternalAr
   take?: number
   skip?: number
   _count?: AgentCountAggregateInputType | true
-  _avg?: AgentAvgAggregateInputType
-  _sum?: AgentSumAggregateInputType
   _min?: AgentMinAggregateInputType
   _max?: AgentMaxAggregateInputType
 }
 
 export type AgentGroupByOutputType = {
-  id: number
+  id: string
   name: string
   image: string
   phone: string
   email: string
-  propertyId: number
+  propertyId: string
   _count: AgentCountAggregateOutputType | null
-  _avg: AgentAvgAggregateOutputType | null
-  _sum: AgentSumAggregateOutputType | null
   _min: AgentMinAggregateOutputType | null
   _max: AgentMaxAggregateOutputType | null
 }
@@ -222,12 +184,12 @@ export type AgentWhereInput = {
   AND?: Prisma.AgentWhereInput | Prisma.AgentWhereInput[]
   OR?: Prisma.AgentWhereInput[]
   NOT?: Prisma.AgentWhereInput | Prisma.AgentWhereInput[]
-  id?: Prisma.IntFilter<"Agent"> | number
+  id?: Prisma.StringFilter<"Agent"> | string
   name?: Prisma.StringFilter<"Agent"> | string
   image?: Prisma.StringFilter<"Agent"> | string
   phone?: Prisma.StringFilter<"Agent"> | string
   email?: Prisma.StringFilter<"Agent"> | string
-  propertyId?: Prisma.IntFilter<"Agent"> | number
+  propertyId?: Prisma.StringFilter<"Agent"> | string
   property?: Prisma.XOR<Prisma.PropertyScalarRelationFilter, Prisma.PropertyWhereInput>
 }
 
@@ -242,8 +204,8 @@ export type AgentOrderByWithRelationInput = {
 }
 
 export type AgentWhereUniqueInput = Prisma.AtLeast<{
-  id?: number
-  propertyId?: number
+  id?: string
+  propertyId?: string
   AND?: Prisma.AgentWhereInput | Prisma.AgentWhereInput[]
   OR?: Prisma.AgentWhereInput[]
   NOT?: Prisma.AgentWhereInput | Prisma.AgentWhereInput[]
@@ -262,25 +224,24 @@ export type AgentOrderByWithAggregationInput = {
   email?: Prisma.SortOrder
   propertyId?: Prisma.SortOrder
   _count?: Prisma.AgentCountOrderByAggregateInput
-  _avg?: Prisma.AgentAvgOrderByAggregateInput
   _max?: Prisma.AgentMaxOrderByAggregateInput
   _min?: Prisma.AgentMinOrderByAggregateInput
-  _sum?: Prisma.AgentSumOrderByAggregateInput
 }
 
 export type AgentScalarWhereWithAggregatesInput = {
   AND?: Prisma.AgentScalarWhereWithAggregatesInput | Prisma.AgentScalarWhereWithAggregatesInput[]
   OR?: Prisma.AgentScalarWhereWithAggregatesInput[]
   NOT?: Prisma.AgentScalarWhereWithAggregatesInput | Prisma.AgentScalarWhereWithAggregatesInput[]
-  id?: Prisma.IntWithAggregatesFilter<"Agent"> | number
+  id?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   name?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   image?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   phone?: Prisma.StringWithAggregatesFilter<"Agent"> | string
   email?: Prisma.StringWithAggregatesFilter<"Agent"> | string
-  propertyId?: Prisma.IntWithAggregatesFilter<"Agent"> | number
+  propertyId?: Prisma.StringWithAggregatesFilter<"Agent"> | string
 }
 
 export type AgentCreateInput = {
+  id?: string
   name: string
   image: string
   phone: string
@@ -289,15 +250,16 @@ export type AgentCreateInput = {
 }
 
 export type AgentUncheckedCreateInput = {
-  id?: number
+  id?: string
   name: string
   image: string
   phone: string
   email: string
-  propertyId: number
+  propertyId: string
 }
 
 export type AgentUpdateInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
@@ -306,24 +268,25 @@ export type AgentUpdateInput = {
 }
 
 export type AgentUncheckedUpdateInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
+  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AgentCreateManyInput = {
-  id?: number
+  id?: string
   name: string
   image: string
   phone: string
   email: string
-  propertyId: number
+  propertyId: string
 }
 
 export type AgentUpdateManyMutationInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
@@ -331,12 +294,12 @@ export type AgentUpdateManyMutationInput = {
 }
 
 export type AgentUncheckedUpdateManyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
   email?: Prisma.StringFieldUpdateOperationsInput | string
-  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
+  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type AgentNullableScalarRelationFilter = {
@@ -350,11 +313,6 @@ export type AgentCountOrderByAggregateInput = {
   image?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  propertyId?: Prisma.SortOrder
-}
-
-export type AgentAvgOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   propertyId?: Prisma.SortOrder
 }
 
@@ -373,11 +331,6 @@ export type AgentMinOrderByAggregateInput = {
   image?: Prisma.SortOrder
   phone?: Prisma.SortOrder
   email?: Prisma.SortOrder
-  propertyId?: Prisma.SortOrder
-}
-
-export type AgentSumOrderByAggregateInput = {
-  id?: Prisma.SortOrder
   propertyId?: Prisma.SortOrder
 }
 
@@ -414,6 +367,7 @@ export type AgentUncheckedUpdateOneWithoutPropertyNestedInput = {
 }
 
 export type AgentCreateWithoutPropertyInput = {
+  id?: string
   name: string
   image: string
   phone: string
@@ -421,7 +375,7 @@ export type AgentCreateWithoutPropertyInput = {
 }
 
 export type AgentUncheckedCreateWithoutPropertyInput = {
-  id?: number
+  id?: string
   name: string
   image: string
   phone: string
@@ -445,6 +399,7 @@ export type AgentUpdateToOneWithWhereWithoutPropertyInput = {
 }
 
 export type AgentUpdateWithoutPropertyInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
@@ -452,7 +407,7 @@ export type AgentUpdateWithoutPropertyInput = {
 }
 
 export type AgentUncheckedUpdateWithoutPropertyInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
+  id?: Prisma.StringFieldUpdateOperationsInput | string
   name?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.StringFieldUpdateOperationsInput | string
   phone?: Prisma.StringFieldUpdateOperationsInput | string
@@ -517,12 +472,12 @@ export type $AgentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     property: Prisma.$PropertyPayload<ExtArgs>
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
-    id: number
+    id: string
     name: string
     image: string
     phone: string
     email: string
-    propertyId: number
+    propertyId: string
   }, ExtArgs["result"]["agent"]>
   composites: {}
 }
@@ -947,12 +902,12 @@ export interface Prisma__AgentClient<T, Null = never, ExtArgs extends runtime.Ty
  * Fields of the Agent model
  */
 export interface AgentFieldRefs {
-  readonly id: Prisma.FieldRef<"Agent", 'Int'>
+  readonly id: Prisma.FieldRef<"Agent", 'String'>
   readonly name: Prisma.FieldRef<"Agent", 'String'>
   readonly image: Prisma.FieldRef<"Agent", 'String'>
   readonly phone: Prisma.FieldRef<"Agent", 'String'>
   readonly email: Prisma.FieldRef<"Agent", 'String'>
-  readonly propertyId: Prisma.FieldRef<"Agent", 'Int'>
+  readonly propertyId: Prisma.FieldRef<"Agent", 'String'>
 }
     
 

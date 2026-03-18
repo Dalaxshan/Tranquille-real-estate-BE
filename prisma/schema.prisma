@@ -28,7 +28,7 @@ model User {
 }
 
 model Property {
-  id              Int      @id @default(autoincrement())
+  id              String   @id @default(uuid())
   title           String
   location        String
   lat             Float
@@ -58,29 +58,29 @@ model Property {
 }
 
 model Blueprint {
-  id         Int      @id @default(autoincrement())
-  title      String
+  id         String   @id @default(uuid())
+  title      String?
   fileUrl    String
-  fileName   String
+  fileName   String?
   fileType   String?
   property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  propertyId Int      @unique
+  propertyId String      @unique
 }
 
 model Agent {
-  id         Int      @id @default(autoincrement())
+  id         String   @id @default(uuid())
   name       String
   image      String
   phone      String
   email      String
   property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  propertyId Int      @unique
+  propertyId String      @unique
 }
 
 model PropertyStatistics {
   id          Int           @id @default(autoincrement())
   property    Property      @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  propertyId  Int           @unique
+  propertyId  String           @unique
   views       ViewStat[]
   priceHistory PriceHistory[]
 }
@@ -109,7 +109,7 @@ model Review {
   date       DateTime @default(now())
   comment    String
   property   Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
-  propertyId Int
+  propertyId String
 }
 
 model Branch {

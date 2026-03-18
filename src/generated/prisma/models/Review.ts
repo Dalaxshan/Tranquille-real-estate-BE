@@ -28,12 +28,10 @@ export type AggregateReview = {
 
 export type ReviewAvgAggregateOutputType = {
   rating: number | null
-  propertyId: number | null
 }
 
 export type ReviewSumAggregateOutputType = {
   rating: number | null
-  propertyId: number | null
 }
 
 export type ReviewMinAggregateOutputType = {
@@ -43,7 +41,7 @@ export type ReviewMinAggregateOutputType = {
   rating: number | null
   date: Date | null
   comment: string | null
-  propertyId: number | null
+  propertyId: string | null
 }
 
 export type ReviewMaxAggregateOutputType = {
@@ -53,7 +51,7 @@ export type ReviewMaxAggregateOutputType = {
   rating: number | null
   date: Date | null
   comment: string | null
-  propertyId: number | null
+  propertyId: string | null
 }
 
 export type ReviewCountAggregateOutputType = {
@@ -70,12 +68,10 @@ export type ReviewCountAggregateOutputType = {
 
 export type ReviewAvgAggregateInputType = {
   rating?: true
-  propertyId?: true
 }
 
 export type ReviewSumAggregateInputType = {
   rating?: true
-  propertyId?: true
 }
 
 export type ReviewMinAggregateInputType = {
@@ -202,7 +198,7 @@ export type ReviewGroupByOutputType = {
   rating: number
   date: Date
   comment: string
-  propertyId: number
+  propertyId: string
   _count: ReviewCountAggregateOutputType | null
   _avg: ReviewAvgAggregateOutputType | null
   _sum: ReviewSumAggregateOutputType | null
@@ -235,7 +231,7 @@ export type ReviewWhereInput = {
   rating?: Prisma.IntFilter<"Review"> | number
   date?: Prisma.DateTimeFilter<"Review"> | Date | string
   comment?: Prisma.StringFilter<"Review"> | string
-  propertyId?: Prisma.IntFilter<"Review"> | number
+  propertyId?: Prisma.StringFilter<"Review"> | string
   property?: Prisma.XOR<Prisma.PropertyScalarRelationFilter, Prisma.PropertyWhereInput>
 }
 
@@ -260,7 +256,7 @@ export type ReviewWhereUniqueInput = Prisma.AtLeast<{
   rating?: Prisma.IntFilter<"Review"> | number
   date?: Prisma.DateTimeFilter<"Review"> | Date | string
   comment?: Prisma.StringFilter<"Review"> | string
-  propertyId?: Prisma.IntFilter<"Review"> | number
+  propertyId?: Prisma.StringFilter<"Review"> | string
   property?: Prisma.XOR<Prisma.PropertyScalarRelationFilter, Prisma.PropertyWhereInput>
 }, "id">
 
@@ -289,7 +285,7 @@ export type ReviewScalarWhereWithAggregatesInput = {
   rating?: Prisma.IntWithAggregatesFilter<"Review"> | number
   date?: Prisma.DateTimeWithAggregatesFilter<"Review"> | Date | string
   comment?: Prisma.StringWithAggregatesFilter<"Review"> | string
-  propertyId?: Prisma.IntWithAggregatesFilter<"Review"> | number
+  propertyId?: Prisma.StringWithAggregatesFilter<"Review"> | string
 }
 
 export type ReviewCreateInput = {
@@ -309,7 +305,7 @@ export type ReviewUncheckedCreateInput = {
   rating: number
   date?: Date | string
   comment: string
-  propertyId: number
+  propertyId: string
 }
 
 export type ReviewUpdateInput = {
@@ -329,7 +325,7 @@ export type ReviewUncheckedUpdateInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comment?: Prisma.StringFieldUpdateOperationsInput | string
-  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
+  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ReviewCreateManyInput = {
@@ -339,7 +335,7 @@ export type ReviewCreateManyInput = {
   rating: number
   date?: Date | string
   comment: string
-  propertyId: number
+  propertyId: string
 }
 
 export type ReviewUpdateManyMutationInput = {
@@ -358,7 +354,7 @@ export type ReviewUncheckedUpdateManyInput = {
   rating?: Prisma.IntFieldUpdateOperationsInput | number
   date?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   comment?: Prisma.StringFieldUpdateOperationsInput | string
-  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
+  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type ReviewListRelationFilter = {
@@ -383,7 +379,6 @@ export type ReviewCountOrderByAggregateInput = {
 
 export type ReviewAvgOrderByAggregateInput = {
   rating?: Prisma.SortOrder
-  propertyId?: Prisma.SortOrder
 }
 
 export type ReviewMaxOrderByAggregateInput = {
@@ -408,7 +403,6 @@ export type ReviewMinOrderByAggregateInput = {
 
 export type ReviewSumOrderByAggregateInput = {
   rating?: Prisma.SortOrder
-  propertyId?: Prisma.SortOrder
 }
 
 export type ReviewCreateNestedManyWithoutPropertyInput = {
@@ -507,7 +501,7 @@ export type ReviewScalarWhereInput = {
   rating?: Prisma.IntFilter<"Review"> | number
   date?: Prisma.DateTimeFilter<"Review"> | Date | string
   comment?: Prisma.StringFilter<"Review"> | string
-  propertyId?: Prisma.IntFilter<"Review"> | number
+  propertyId?: Prisma.StringFilter<"Review"> | string
 }
 
 export type ReviewCreateManyPropertyInput = {
@@ -614,7 +608,7 @@ export type $ReviewPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     rating: number
     date: Date
     comment: string
-    propertyId: number
+    propertyId: string
   }, ExtArgs["result"]["review"]>
   composites: {}
 }
@@ -1045,7 +1039,7 @@ export interface ReviewFieldRefs {
   readonly rating: Prisma.FieldRef<"Review", 'Int'>
   readonly date: Prisma.FieldRef<"Review", 'DateTime'>
   readonly comment: Prisma.FieldRef<"Review", 'String'>
-  readonly propertyId: Prisma.FieldRef<"Review", 'Int'>
+  readonly propertyId: Prisma.FieldRef<"Review", 'String'>
 }
     
 

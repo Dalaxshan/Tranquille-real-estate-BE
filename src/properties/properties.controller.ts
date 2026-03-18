@@ -20,7 +20,7 @@ export class PropertiesController {
   @Post()
   create(@Body() dto: CreatePropertyDto) {
     return this.propertiesService.create(
-      '36e0ab06-17d5-4443-a93b-9e56132cb345',
+      '7cb61e42-2064-4310-baf5-313816ed8833',
       dto,
     );
   }
@@ -34,31 +34,36 @@ export class PropertiesController {
     return this.propertiesService.findAll({ city, type, category });
   }
 
+  @Get('stats')
+  getDashboardStats() {
+    return this.propertiesService.getDashboardStats();
+  }
+
   @Get(':id')
-  findOne(@Param('id', ParseIntPipe) id: number) {
+  findOne(@Param('id') id: string) {
     return this.propertiesService.findOne(id);
   }
 
   // @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
-    @Param('id', ParseIntPipe) id: number,
+    @Param('id') id: string,
     @Request() req,
     @Body() dto: Partial<CreatePropertyDto>,
   ) {
     return this.propertiesService.update(
       id,
-      '36e0ab06-17d5-4443-a93b-9e56132cb345',
+      '7cb61e42-2064-4310-baf5-313816ed8833',
       dto,
     );
   }
 
   // @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  remove(@Param('id', ParseIntPipe) id: number) {
+  remove(@Param('id') id: string) {
     return this.propertiesService.remove(
       id,
-      '36e0ab06-17d5-4443-a93b-9e56132cb345',
+      '7cb61e42-2064-4310-baf5-313816ed8833',
     );
   }
 }

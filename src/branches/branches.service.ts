@@ -34,6 +34,6 @@ export class BranchesService {
     const branch = await this.findOne(id);
     if (branch.userId !== userId) throw new ForbiddenException();
     await this.prisma.branch.delete({ where: { id } });
-    return { message: 'Branch deleted' };
+    return { message: `Branch with ID ${id} has been successfully deleted` };
   }
 }

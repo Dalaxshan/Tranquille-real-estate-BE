@@ -73,6 +73,7 @@ export class AuthService {
 
     return {
       message: 'Login successful',
+      user: data.user,
       access_token: data.session.access_token,
       refresh_token: data.session.refresh_token,
     };
