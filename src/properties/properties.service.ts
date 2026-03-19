@@ -8,7 +8,7 @@ import { CreatePropertyDto } from './dto/create-property.dto';
 
 @Injectable()
 export class PropertiesService {
-  constructor(private prisma: PrismaService) { }
+  constructor(private prisma: PrismaService) {}
 
   async create(userId: string, dto: CreatePropertyDto) {
     const { blueprint, agent, statistics, ...rest } = dto;
@@ -141,5 +141,4 @@ export class PropertiesService {
       totalBranches,
     };
   }
-
 }

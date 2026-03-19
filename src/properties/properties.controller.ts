@@ -20,7 +20,7 @@ export class PropertiesController {
   @Post()
   create(@Body() dto: CreatePropertyDto) {
     return this.propertiesService.create(
-      '7cb61e42-2064-4310-baf5-313816ed8833',
+      '985fdf80-5054-427b-bb1a-3c197938b78d',
       dto,
     );
   }
@@ -53,7 +53,7 @@ export class PropertiesController {
   ) {
     return this.propertiesService.update(
       id,
-      '7cb61e42-2064-4310-baf5-313816ed8833',
+      '985fdf80-5054-427b-bb1a-3c197938b78d',
       dto,
     );
   }
@@ -63,7 +63,7 @@ export class PropertiesController {
   remove(@Param('id') id: string) {
     return this.propertiesService.remove(
       id,
-      '7cb61e42-2064-4310-baf5-313816ed8833',
+      '985fdf80-5054-427b-bb1a-3c197938b78d',
     );
   }
 }

@@ -155,9 +155,9 @@ export type BlueprintGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
 
 export type BlueprintGroupByOutputType = {
   id: string
-  title: string
+  title: string | null
   fileUrl: string
-  fileName: string
+  fileName: string | null
   fileType: string | null
   propertyId: string
   _count: BlueprintCountAggregateOutputType | null
@@ -185,9 +185,9 @@ export type BlueprintWhereInput = {
   OR?: Prisma.BlueprintWhereInput[]
   NOT?: Prisma.BlueprintWhereInput | Prisma.BlueprintWhereInput[]
   id?: Prisma.StringFilter<"Blueprint"> | string
-  title?: Prisma.StringFilter<"Blueprint"> | string
+  title?: Prisma.StringNullableFilter<"Blueprint"> | string | null
   fileUrl?: Prisma.StringFilter<"Blueprint"> | string
-  fileName?: Prisma.StringFilter<"Blueprint"> | string
+  fileName?: Prisma.StringNullableFilter<"Blueprint"> | string | null
   fileType?: Prisma.StringNullableFilter<"Blueprint"> | string | null
   propertyId?: Prisma.StringFilter<"Blueprint"> | string
   property?: Prisma.XOR<Prisma.PropertyScalarRelationFilter, Prisma.PropertyWhereInput>
@@ -195,9 +195,9 @@ export type BlueprintWhereInput = {
 
 export type BlueprintOrderByWithRelationInput = {
   id?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
-  fileName?: Prisma.SortOrder
+  fileName?: Prisma.SortOrderInput | Prisma.SortOrder
   fileType?: Prisma.SortOrderInput | Prisma.SortOrder
   propertyId?: Prisma.SortOrder
   property?: Prisma.PropertyOrderByWithRelationInput
@@ -209,18 +209,18 @@ export type BlueprintWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.BlueprintWhereInput | Prisma.BlueprintWhereInput[]
   OR?: Prisma.BlueprintWhereInput[]
   NOT?: Prisma.BlueprintWhereInput | Prisma.BlueprintWhereInput[]
-  title?: Prisma.StringFilter<"Blueprint"> | string
+  title?: Prisma.StringNullableFilter<"Blueprint"> | string | null
   fileUrl?: Prisma.StringFilter<"Blueprint"> | string
-  fileName?: Prisma.StringFilter<"Blueprint"> | string
+  fileName?: Prisma.StringNullableFilter<"Blueprint"> | string | null
   fileType?: Prisma.StringNullableFilter<"Blueprint"> | string | null
   property?: Prisma.XOR<Prisma.PropertyScalarRelationFilter, Prisma.PropertyWhereInput>
 }, "id" | "propertyId">
 
 export type BlueprintOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
-  title?: Prisma.SortOrder
+  title?: Prisma.SortOrderInput | Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
-  fileName?: Prisma.SortOrder
+  fileName?: Prisma.SortOrderInput | Prisma.SortOrder
   fileType?: Prisma.SortOrderInput | Prisma.SortOrder
   propertyId?: Prisma.SortOrder
   _count?: Prisma.BlueprintCountOrderByAggregateInput
@@ -233,71 +233,71 @@ export type BlueprintScalarWhereWithAggregatesInput = {
   OR?: Prisma.BlueprintScalarWhereWithAggregatesInput[]
   NOT?: Prisma.BlueprintScalarWhereWithAggregatesInput | Prisma.BlueprintScalarWhereWithAggregatesInput[]
   id?: Prisma.StringWithAggregatesFilter<"Blueprint"> | string
-  title?: Prisma.StringWithAggregatesFilter<"Blueprint"> | string
+  title?: Prisma.StringNullableWithAggregatesFilter<"Blueprint"> | string | null
   fileUrl?: Prisma.StringWithAggregatesFilter<"Blueprint"> | string
-  fileName?: Prisma.StringWithAggregatesFilter<"Blueprint"> | string
+  fileName?: Prisma.StringNullableWithAggregatesFilter<"Blueprint"> | string | null
   fileType?: Prisma.StringNullableWithAggregatesFilter<"Blueprint"> | string | null
   propertyId?: Prisma.StringWithAggregatesFilter<"Blueprint"> | string
 }
 
 export type BlueprintCreateInput = {
   id?: string
-  title: string
+  title?: string | null
   fileUrl: string
-  fileName: string
+  fileName?: string | null
   fileType?: string | null
   property: Prisma.PropertyCreateNestedOneWithoutBlueprintInput
 }
 
 export type BlueprintUncheckedCreateInput = {
   id?: string
-  title: string
+  title?: string | null
   fileUrl: string
-  fileName: string
+  fileName?: string | null
   fileType?: string | null
   propertyId: string
 }
 
 export type BlueprintUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   property?: Prisma.PropertyUpdateOneRequiredWithoutBlueprintNestedInput
 }
 
 export type BlueprintUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   propertyId?: Prisma.StringFieldUpdateOperationsInput | string
 }
 
 export type BlueprintCreateManyInput = {
   id?: string
-  title: string
+  title?: string | null
   fileUrl: string
-  fileName: string
+  fileName?: string | null
   fileType?: string | null
   propertyId: string
 }
 
 export type BlueprintUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BlueprintUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   propertyId?: Prisma.StringFieldUpdateOperationsInput | string
 }
@@ -368,17 +368,17 @@ export type BlueprintUncheckedUpdateOneWithoutPropertyNestedInput = {
 
 export type BlueprintCreateWithoutPropertyInput = {
   id?: string
-  title: string
+  title?: string | null
   fileUrl: string
-  fileName: string
+  fileName?: string | null
   fileType?: string | null
 }
 
 export type BlueprintUncheckedCreateWithoutPropertyInput = {
   id?: string
-  title: string
+  title?: string | null
   fileUrl: string
-  fileName: string
+  fileName?: string | null
   fileType?: string | null
 }
 
@@ -400,17 +400,17 @@ export type BlueprintUpdateToOneWithWhereWithoutPropertyInput = {
 
 export type BlueprintUpdateWithoutPropertyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type BlueprintUncheckedUpdateWithoutPropertyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
-  title?: Prisma.StringFieldUpdateOperationsInput | string
+  title?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  fileName?: Prisma.StringFieldUpdateOperationsInput | string
+  fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
@@ -473,9 +473,9 @@ export type $BlueprintPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
-    title: string
+    title: string | null
     fileUrl: string
-    fileName: string
+    fileName: string | null
     fileType: string | null
     propertyId: string
   }, ExtArgs["result"]["blueprint"]>
