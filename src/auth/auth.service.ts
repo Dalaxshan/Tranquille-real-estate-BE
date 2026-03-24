@@ -69,14 +69,25 @@ export class AuthService {
       password: dto.password,
     });
 
+    const userData = await this.getProfile(data.session.access_token);
+
+    console.log('Login data:', data);
     if (error) throw new UnauthorizedException(error.message);
 
     return {
       message: 'Login successful',
-      user: data.user,
+      user: userData,
       access_token: data.session.access_token,
       refresh_token: data.session.refresh_token,
     };
+  }
+
+  async getProfile(token: string) {
+    const user = await this.verifyToken(token);
+    const profile = await this.prisma.user.findUnique({
+      where: { supabaseId: user.id },
+    });
+    return profile;
   }
 
   async verifyToken(token: string) {
@@ -93,12 +104,5 @@ export class AuthService {
     );
     await client.auth.signOut();
     return { message: 'Logged out successfully' };
-  }
-
-  async getProfile(userId: string) {
-    return this.prisma.user.findUnique({
-      where: { id: userId },
-      select: { id: true, email: true, username: true, createdAt: true },
-    });
   }
 }

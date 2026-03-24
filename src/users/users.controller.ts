@@ -18,7 +18,7 @@ export class UsersController {
 
   @Get('me')
   getProfile(@Request() req) {
-    return this.usersService.getProfile(req.user.id);
+    return this.usersService.getProfile('6591ca37-b1a4-4e88-b3c0-27569ae7e56b');
   }
 
   @Patch('me')
