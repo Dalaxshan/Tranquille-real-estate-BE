@@ -19,8 +19,8 @@ export class PropertiesController {
   constructor(private propertiesService: PropertiesService) {}
 
   @Post()
-  create(@Request() req, @Body() dto: CreatePropertyDto) {
-    return this.propertiesService.create(req.user.id, dto);
+  create(@Body() dto: CreatePropertyDto) {
+    return this.propertiesService.create(dto);
   }
 
   @Get()

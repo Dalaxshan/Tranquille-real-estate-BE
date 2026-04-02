@@ -10,12 +10,11 @@ import { CreatePropertyDto } from './dto/create-property.dto';
 export class PropertiesService {
   constructor(private prisma: PrismaService) {}
 
-  async create(userId: string, dto: CreatePropertyDto) {
+  async create( dto: CreatePropertyDto) {
     const { blueprint, agent, statistics, ...rest } = dto;
     return await this.prisma.property.create({
       data: {
         ...rest,
-        userId,
         ...(blueprint && { blueprint: { create: blueprint } }),
         ...(agent && { agent: { create: agent } }),
         ...(statistics && {

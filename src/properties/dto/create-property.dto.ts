@@ -7,6 +7,7 @@ import {
 } from 'class-validator';
 
 export class CreatePropertyDto {
+  @IsString() userId: string;
   @IsString() title: string;
   @IsString() location: string;
   @IsNumber() lat: number;
