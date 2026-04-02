@@ -8,21 +8,19 @@ import {
   Param,
   Query,
   Request,
-  ParseIntPipe,
+  UseGuards,
 } from '@nestjs/common';
 import { PropertiesService } from './properties.service';
 import { CreatePropertyDto } from './dto/create-property.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 
 @Controller('properties')
 export class PropertiesController {
   constructor(private propertiesService: PropertiesService) {}
 
   @Post()
-  create(@Body() dto: CreatePropertyDto) {
-    return this.propertiesService.create(
-      '985fdf80-5054-427b-bb1a-3c197938b78d',
-      dto,
-    );
+  create(@Request() req, @Body() dto: CreatePropertyDto) {
+    return this.propertiesService.create(req.user.id, dto);
   }
 
   @Get()
@@ -35,6 +33,7 @@ export class PropertiesController {
   }
 
   @Get('stats')
+  @UseGuards(JwtAuthGuard)
   getDashboardStats() {
     return this.propertiesService.getDashboardStats();
   }
@@ -44,26 +43,19 @@ export class PropertiesController {
     return this.propertiesService.findOne(id);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Request() req,
     @Body() dto: Partial<CreatePropertyDto>,
   ) {
-    return this.propertiesService.update(
-      id,
-      '985fdf80-5054-427b-bb1a-3c197938b78d',
-      dto,
-    );
+    return this.propertiesService.update(id, req.user.id, dto);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.propertiesService.remove(
-      id,
-      '985fdf80-5054-427b-bb1a-3c197938b78d',
-    );
+  remove(@Param('id') id: string, @Request() req) {
+    return this.propertiesService.remove(id, req.user.id);
   }
 }

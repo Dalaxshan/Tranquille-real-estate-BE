@@ -7,7 +7,6 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async getProfile(userId: string) {
-    console.log('User Id: ', userId);
     return this.prisma.user.findUnique({
       where: { id: userId },
       select: { id: true, email: true, username: true, createdAt: true },

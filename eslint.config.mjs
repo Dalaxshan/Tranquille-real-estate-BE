@@ -2,6 +2,7 @@
 import eslint from '@eslint/js';
 import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import globals from 'globals';
+import { type } from 'os';
 import tseslint from 'typescript-eslint';
 
 export default tseslint.config(
@@ -28,6 +29,7 @@ export default tseslint.config(
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
       '@typescript-eslint/no-misused-promises': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
       '@typescript-eslint/no-floating-promises': 'off',
       '@typescript-eslint/no-unsafe-argument': 'off',
       '@typescript-eslint/no-unsafe-assignment': 'off',   
