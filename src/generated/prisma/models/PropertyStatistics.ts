@@ -28,20 +28,22 @@ export type AggregatePropertyStatistics = {
 
 export type PropertyStatisticsAvgAggregateOutputType = {
   id: number | null
+  propertyId: number | null
 }
 
 export type PropertyStatisticsSumAggregateOutputType = {
   id: number | null
+  propertyId: number | null
 }
 
 export type PropertyStatisticsMinAggregateOutputType = {
   id: number | null
-  propertyId: string | null
+  propertyId: number | null
 }
 
 export type PropertyStatisticsMaxAggregateOutputType = {
   id: number | null
-  propertyId: string | null
+  propertyId: number | null
 }
 
 export type PropertyStatisticsCountAggregateOutputType = {
@@ -53,10 +55,12 @@ export type PropertyStatisticsCountAggregateOutputType = {
 
 export type PropertyStatisticsAvgAggregateInputType = {
   id?: true
+  propertyId?: true
 }
 
 export type PropertyStatisticsSumAggregateInputType = {
   id?: true
+  propertyId?: true
 }
 
 export type PropertyStatisticsMinAggregateInputType = {
@@ -163,7 +167,7 @@ export type PropertyStatisticsGroupByArgs<ExtArgs extends runtime.Types.Extensio
 
 export type PropertyStatisticsGroupByOutputType = {
   id: number
-  propertyId: string
+  propertyId: number
   _count: PropertyStatisticsCountAggregateOutputType | null
   _avg: PropertyStatisticsAvgAggregateOutputType | null
   _sum: PropertyStatisticsSumAggregateOutputType | null
@@ -191,7 +195,7 @@ export type PropertyStatisticsWhereInput = {
   OR?: Prisma.PropertyStatisticsWhereInput[]
   NOT?: Prisma.PropertyStatisticsWhereInput | Prisma.PropertyStatisticsWhereInput[]
   id?: Prisma.IntFilter<"PropertyStatistics"> | number
-  propertyId?: Prisma.StringFilter<"PropertyStatistics"> | string
+  propertyId?: Prisma.IntFilter<"PropertyStatistics"> | number
   property?: Prisma.XOR<Prisma.PropertyScalarRelationFilter, Prisma.PropertyWhereInput>
   views?: Prisma.ViewStatListRelationFilter
   priceHistory?: Prisma.PriceHistoryListRelationFilter
@@ -207,7 +211,7 @@ export type PropertyStatisticsOrderByWithRelationInput = {
 
 export type PropertyStatisticsWhereUniqueInput = Prisma.AtLeast<{
   id?: number
-  propertyId?: string
+  propertyId?: number
   AND?: Prisma.PropertyStatisticsWhereInput | Prisma.PropertyStatisticsWhereInput[]
   OR?: Prisma.PropertyStatisticsWhereInput[]
   NOT?: Prisma.PropertyStatisticsWhereInput | Prisma.PropertyStatisticsWhereInput[]
@@ -231,7 +235,7 @@ export type PropertyStatisticsScalarWhereWithAggregatesInput = {
   OR?: Prisma.PropertyStatisticsScalarWhereWithAggregatesInput[]
   NOT?: Prisma.PropertyStatisticsScalarWhereWithAggregatesInput | Prisma.PropertyStatisticsScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"PropertyStatistics"> | number
-  propertyId?: Prisma.StringWithAggregatesFilter<"PropertyStatistics"> | string
+  propertyId?: Prisma.IntWithAggregatesFilter<"PropertyStatistics"> | number
 }
 
 export type PropertyStatisticsCreateInput = {
@@ -242,7 +246,7 @@ export type PropertyStatisticsCreateInput = {
 
 export type PropertyStatisticsUncheckedCreateInput = {
   id?: number
-  propertyId: string
+  propertyId: number
   views?: Prisma.ViewStatUncheckedCreateNestedManyWithoutStatisticsInput
   priceHistory?: Prisma.PriceHistoryUncheckedCreateNestedManyWithoutStatisticsInput
 }
@@ -255,14 +259,14 @@ export type PropertyStatisticsUpdateInput = {
 
 export type PropertyStatisticsUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
+  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
   views?: Prisma.ViewStatUncheckedUpdateManyWithoutStatisticsNestedInput
   priceHistory?: Prisma.PriceHistoryUncheckedUpdateManyWithoutStatisticsNestedInput
 }
 
 export type PropertyStatisticsCreateManyInput = {
   id?: number
-  propertyId: string
+  propertyId: number
 }
 
 export type PropertyStatisticsUpdateManyMutationInput = {
@@ -271,7 +275,7 @@ export type PropertyStatisticsUpdateManyMutationInput = {
 
 export type PropertyStatisticsUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
+  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PropertyStatisticsNullableScalarRelationFilter = {
@@ -286,6 +290,7 @@ export type PropertyStatisticsCountOrderByAggregateInput = {
 
 export type PropertyStatisticsAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  propertyId?: Prisma.SortOrder
 }
 
 export type PropertyStatisticsMaxOrderByAggregateInput = {
@@ -300,6 +305,7 @@ export type PropertyStatisticsMinOrderByAggregateInput = {
 
 export type PropertyStatisticsSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
+  propertyId?: Prisma.SortOrder
 }
 
 export type PropertyStatisticsScalarRelationFilter = {
@@ -337,14 +343,6 @@ export type PropertyStatisticsUncheckedUpdateOneWithoutPropertyNestedInput = {
   delete?: Prisma.PropertyStatisticsWhereInput | boolean
   connect?: Prisma.PropertyStatisticsWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.PropertyStatisticsUpdateToOneWithWhereWithoutPropertyInput, Prisma.PropertyStatisticsUpdateWithoutPropertyInput>, Prisma.PropertyStatisticsUncheckedUpdateWithoutPropertyInput>
-}
-
-export type IntFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
 }
 
 export type PropertyStatisticsCreateNestedOneWithoutViewsInput = {
@@ -420,7 +418,7 @@ export type PropertyStatisticsCreateWithoutViewsInput = {
 
 export type PropertyStatisticsUncheckedCreateWithoutViewsInput = {
   id?: number
-  propertyId: string
+  propertyId: number
   priceHistory?: Prisma.PriceHistoryUncheckedCreateNestedManyWithoutStatisticsInput
 }
 
@@ -447,7 +445,7 @@ export type PropertyStatisticsUpdateWithoutViewsInput = {
 
 export type PropertyStatisticsUncheckedUpdateWithoutViewsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
+  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
   priceHistory?: Prisma.PriceHistoryUncheckedUpdateManyWithoutStatisticsNestedInput
 }
 
@@ -458,7 +456,7 @@ export type PropertyStatisticsCreateWithoutPriceHistoryInput = {
 
 export type PropertyStatisticsUncheckedCreateWithoutPriceHistoryInput = {
   id?: number
-  propertyId: string
+  propertyId: number
   views?: Prisma.ViewStatUncheckedCreateNestedManyWithoutStatisticsInput
 }
 
@@ -485,7 +483,7 @@ export type PropertyStatisticsUpdateWithoutPriceHistoryInput = {
 
 export type PropertyStatisticsUncheckedUpdateWithoutPriceHistoryInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
+  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
   views?: Prisma.ViewStatUncheckedUpdateManyWithoutStatisticsNestedInput
 }
 
@@ -578,7 +576,7 @@ export type $PropertyStatisticsPayload<ExtArgs extends runtime.Types.Extensions.
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    propertyId: string
+    propertyId: number
   }, ExtArgs["result"]["propertyStatistics"]>
   composites: {}
 }
@@ -1006,7 +1004,7 @@ export interface Prisma__PropertyStatisticsClient<T, Null = never, ExtArgs exten
  */
 export interface PropertyStatisticsFieldRefs {
   readonly id: Prisma.FieldRef<"PropertyStatistics", 'Int'>
-  readonly propertyId: Prisma.FieldRef<"PropertyStatistics", 'String'>
+  readonly propertyId: Prisma.FieldRef<"PropertyStatistics", 'Int'>
 }
     
 

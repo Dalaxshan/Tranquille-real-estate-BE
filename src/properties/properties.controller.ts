@@ -40,7 +40,7 @@ export class PropertiesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.propertiesService.findOne(id);
+    return this.propertiesService.findOne(+id);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -50,12 +50,12 @@ export class PropertiesController {
     @Request() req,
     @Body() dto: Partial<CreatePropertyDto>,
   ) {
-    return this.propertiesService.update(id, req.user.id, dto);
+    return this.propertiesService.update(+id, req.user.id, dto);
   }
 
   @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @Request() req) {
-    return this.propertiesService.remove(id, req.user.id);
+    return this.propertiesService.remove(+id, req.user.id);
   }
 }

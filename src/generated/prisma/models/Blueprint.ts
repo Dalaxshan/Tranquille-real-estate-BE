@@ -20,8 +20,18 @@ export type BlueprintModel = runtime.Types.Result.DefaultSelection<Prisma.$Bluep
 
 export type AggregateBlueprint = {
   _count: BlueprintCountAggregateOutputType | null
+  _avg: BlueprintAvgAggregateOutputType | null
+  _sum: BlueprintSumAggregateOutputType | null
   _min: BlueprintMinAggregateOutputType | null
   _max: BlueprintMaxAggregateOutputType | null
+}
+
+export type BlueprintAvgAggregateOutputType = {
+  propertyId: number | null
+}
+
+export type BlueprintSumAggregateOutputType = {
+  propertyId: number | null
 }
 
 export type BlueprintMinAggregateOutputType = {
@@ -30,7 +40,7 @@ export type BlueprintMinAggregateOutputType = {
   fileUrl: string | null
   fileName: string | null
   fileType: string | null
-  propertyId: string | null
+  propertyId: number | null
 }
 
 export type BlueprintMaxAggregateOutputType = {
@@ -39,7 +49,7 @@ export type BlueprintMaxAggregateOutputType = {
   fileUrl: string | null
   fileName: string | null
   fileType: string | null
-  propertyId: string | null
+  propertyId: number | null
 }
 
 export type BlueprintCountAggregateOutputType = {
@@ -52,6 +62,14 @@ export type BlueprintCountAggregateOutputType = {
   _all: number
 }
 
+
+export type BlueprintAvgAggregateInputType = {
+  propertyId?: true
+}
+
+export type BlueprintSumAggregateInputType = {
+  propertyId?: true
+}
 
 export type BlueprintMinAggregateInputType = {
   id?: true
@@ -119,6 +137,18 @@ export type BlueprintAggregateArgs<ExtArgs extends runtime.Types.Extensions.Inte
   /**
    * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
    * 
+   * Select which fields to average
+  **/
+  _avg?: BlueprintAvgAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
+   * Select which fields to sum
+  **/
+  _sum?: BlueprintSumAggregateInputType
+  /**
+   * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+   * 
    * Select which fields to find the minimum value
   **/
   _min?: BlueprintMinAggregateInputType
@@ -149,6 +179,8 @@ export type BlueprintGroupByArgs<ExtArgs extends runtime.Types.Extensions.Intern
   take?: number
   skip?: number
   _count?: BlueprintCountAggregateInputType | true
+  _avg?: BlueprintAvgAggregateInputType
+  _sum?: BlueprintSumAggregateInputType
   _min?: BlueprintMinAggregateInputType
   _max?: BlueprintMaxAggregateInputType
 }
@@ -159,8 +191,10 @@ export type BlueprintGroupByOutputType = {
   fileUrl: string
   fileName: string | null
   fileType: string | null
-  propertyId: string
+  propertyId: number
   _count: BlueprintCountAggregateOutputType | null
+  _avg: BlueprintAvgAggregateOutputType | null
+  _sum: BlueprintSumAggregateOutputType | null
   _min: BlueprintMinAggregateOutputType | null
   _max: BlueprintMaxAggregateOutputType | null
 }
@@ -189,7 +223,7 @@ export type BlueprintWhereInput = {
   fileUrl?: Prisma.StringFilter<"Blueprint"> | string
   fileName?: Prisma.StringNullableFilter<"Blueprint"> | string | null
   fileType?: Prisma.StringNullableFilter<"Blueprint"> | string | null
-  propertyId?: Prisma.StringFilter<"Blueprint"> | string
+  propertyId?: Prisma.IntFilter<"Blueprint"> | number
   property?: Prisma.XOR<Prisma.PropertyScalarRelationFilter, Prisma.PropertyWhereInput>
 }
 
@@ -205,7 +239,7 @@ export type BlueprintOrderByWithRelationInput = {
 
 export type BlueprintWhereUniqueInput = Prisma.AtLeast<{
   id?: string
-  propertyId?: string
+  propertyId?: number
   AND?: Prisma.BlueprintWhereInput | Prisma.BlueprintWhereInput[]
   OR?: Prisma.BlueprintWhereInput[]
   NOT?: Prisma.BlueprintWhereInput | Prisma.BlueprintWhereInput[]
@@ -224,8 +258,10 @@ export type BlueprintOrderByWithAggregationInput = {
   fileType?: Prisma.SortOrderInput | Prisma.SortOrder
   propertyId?: Prisma.SortOrder
   _count?: Prisma.BlueprintCountOrderByAggregateInput
+  _avg?: Prisma.BlueprintAvgOrderByAggregateInput
   _max?: Prisma.BlueprintMaxOrderByAggregateInput
   _min?: Prisma.BlueprintMinOrderByAggregateInput
+  _sum?: Prisma.BlueprintSumOrderByAggregateInput
 }
 
 export type BlueprintScalarWhereWithAggregatesInput = {
@@ -237,7 +273,7 @@ export type BlueprintScalarWhereWithAggregatesInput = {
   fileUrl?: Prisma.StringWithAggregatesFilter<"Blueprint"> | string
   fileName?: Prisma.StringNullableWithAggregatesFilter<"Blueprint"> | string | null
   fileType?: Prisma.StringNullableWithAggregatesFilter<"Blueprint"> | string | null
-  propertyId?: Prisma.StringWithAggregatesFilter<"Blueprint"> | string
+  propertyId?: Prisma.IntWithAggregatesFilter<"Blueprint"> | number
 }
 
 export type BlueprintCreateInput = {
@@ -255,7 +291,7 @@ export type BlueprintUncheckedCreateInput = {
   fileUrl: string
   fileName?: string | null
   fileType?: string | null
-  propertyId: string
+  propertyId: number
 }
 
 export type BlueprintUpdateInput = {
@@ -273,7 +309,7 @@ export type BlueprintUncheckedUpdateInput = {
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
+  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type BlueprintCreateManyInput = {
@@ -282,7 +318,7 @@ export type BlueprintCreateManyInput = {
   fileUrl: string
   fileName?: string | null
   fileType?: string | null
-  propertyId: string
+  propertyId: number
 }
 
 export type BlueprintUpdateManyMutationInput = {
@@ -299,7 +335,7 @@ export type BlueprintUncheckedUpdateManyInput = {
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   fileName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   fileType?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  propertyId?: Prisma.StringFieldUpdateOperationsInput | string
+  propertyId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type BlueprintNullableScalarRelationFilter = {
@@ -313,6 +349,10 @@ export type BlueprintCountOrderByAggregateInput = {
   fileUrl?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
   fileType?: Prisma.SortOrder
+  propertyId?: Prisma.SortOrder
+}
+
+export type BlueprintAvgOrderByAggregateInput = {
   propertyId?: Prisma.SortOrder
 }
 
@@ -331,6 +371,10 @@ export type BlueprintMinOrderByAggregateInput = {
   fileUrl?: Prisma.SortOrder
   fileName?: Prisma.SortOrder
   fileType?: Prisma.SortOrder
+  propertyId?: Prisma.SortOrder
+}
+
+export type BlueprintSumOrderByAggregateInput = {
   propertyId?: Prisma.SortOrder
 }
 
@@ -477,7 +521,7 @@ export type $BlueprintPayload<ExtArgs extends runtime.Types.Extensions.InternalA
     fileUrl: string
     fileName: string | null
     fileType: string | null
-    propertyId: string
+    propertyId: number
   }, ExtArgs["result"]["blueprint"]>
   composites: {}
 }
@@ -907,7 +951,7 @@ export interface BlueprintFieldRefs {
   readonly fileUrl: Prisma.FieldRef<"Blueprint", 'String'>
   readonly fileName: Prisma.FieldRef<"Blueprint", 'String'>
   readonly fileType: Prisma.FieldRef<"Blueprint", 'String'>
-  readonly propertyId: Prisma.FieldRef<"Blueprint", 'String'>
+  readonly propertyId: Prisma.FieldRef<"Blueprint", 'Int'>
 }
     
 
