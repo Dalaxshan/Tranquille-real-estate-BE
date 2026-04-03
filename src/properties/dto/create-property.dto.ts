@@ -7,16 +7,14 @@ import {
 } from 'class-validator';
 
 export class CreatePropertyDto {
-  @IsString() userId: string;
-  @IsString() title: string;
-  @IsString() location: string;
-  @IsNumber() lat: number;
-  @IsNumber() lng: number;
-  @IsString() embedUrl: string;
+  @IsString() userId?: string;
+  @IsString() title?: string;
+  @IsString() location?: string;
+  @IsString() embedUrl?: string;
   @IsOptional() @IsString() virtualTourUrl?: string;
   @IsOptional() @IsNumber() bedrooms?: number;
-  @IsString() price: string;
-  @IsNumber() priceValue: number;
+  @IsNumber() price?: number;
+  @IsNumber() pricePerch?: number;
   @IsEnum([
     'Colombo',
     'Galle',
@@ -25,10 +23,10 @@ export class CreatePropertyDto {
     'Rajagiriya',
     'Wattala',
   ])
-  city: string;
-  @IsEnum(['FOR_SALE', 'FOR_RENT']) type: string;
-  @IsEnum(['Sale', 'Rent']) landType: string;
+  city?: string;
+  @IsEnum(['Sale', 'Rent', 'Sold']) landType?: string;
   @IsEnum([
+    'Land',
     'Agricultural',
     'Residential',
     'Commercial',
@@ -36,11 +34,11 @@ export class CreatePropertyDto {
     'Apartment',
     'Villas',
   ])
-  category: string;
-  @IsString() area: string;
-  @IsString() description: string;
-  @IsArray() images: string[];
-  @IsArray() features: string[];
+  category?: string;
+  @IsString() area?: string;
+  @IsString() description?: string;
+  @IsArray() images?: string[];
+  @IsArray() features?: string[];
   @IsOptional() blueprint?: any;
   @IsOptional() agent?: any;
   @IsOptional() statistics?: any;

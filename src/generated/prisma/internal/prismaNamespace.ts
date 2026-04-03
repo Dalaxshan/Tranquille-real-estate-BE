@@ -1134,15 +1134,12 @@ export const PropertyScalarFieldEnum = {
   id: 'id',
   title: 'title',
   location: 'location',
-  lat: 'lat',
-  lng: 'lng',
   embedUrl: 'embedUrl',
   virtualTourUrl: 'virtualTourUrl',
   bedrooms: 'bedrooms',
   price: 'price',
-  priceValue: 'priceValue',
+  pricePerch: 'pricePerch',
   city: 'city',
-  type: 'type',
   landType: 'landType',
   category: 'category',
   area: 'area',
@@ -1302,20 +1299,6 @@ export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
 
 
 /**
- * Reference to a field of type 'Float'
- */
-export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
-    
-
-
-/**
- * Reference to a field of type 'Float[]'
- */
-export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
-    
-
-
-/**
  * Reference to a field of type 'Int'
  */
 export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
@@ -1330,6 +1313,20 @@ export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel,
 
 
 /**
+ * Reference to a field of type 'Float'
+ */
+export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+/**
+ * Reference to a field of type 'Float[]'
+ */
+export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
+
+
+/**
  * Reference to a field of type 'City'
  */
 export type EnumCityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'City'>
@@ -1340,20 +1337,6 @@ export type EnumCityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel
  * Reference to a field of type 'City[]'
  */
 export type ListEnumCityFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'City[]'>
-    
-
-
-/**
- * Reference to a field of type 'PropertyType'
- */
-export type EnumPropertyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PropertyType'>
-    
-
-
-/**
- * Reference to a field of type 'PropertyType[]'
- */
-export type ListEnumPropertyTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'PropertyType[]'>
     
 
 

@@ -27,32 +27,27 @@ export type AggregateProperty = {
 }
 
 export type PropertyAvgAggregateOutputType = {
-  lat: number | null
-  lng: number | null
   bedrooms: number | null
-  priceValue: number | null
+  price: number | null
+  pricePerch: number | null
 }
 
 export type PropertySumAggregateOutputType = {
-  lat: number | null
-  lng: number | null
   bedrooms: number | null
-  priceValue: number | null
+  price: number | null
+  pricePerch: number | null
 }
 
 export type PropertyMinAggregateOutputType = {
   id: string | null
   title: string | null
   location: string | null
-  lat: number | null
-  lng: number | null
   embedUrl: string | null
   virtualTourUrl: string | null
   bedrooms: number | null
-  price: string | null
-  priceValue: number | null
+  price: number | null
+  pricePerch: number | null
   city: $Enums.City | null
-  type: $Enums.PropertyType | null
   landType: $Enums.LandType | null
   category: $Enums.PropertyCategory | null
   area: string | null
@@ -67,15 +62,12 @@ export type PropertyMaxAggregateOutputType = {
   id: string | null
   title: string | null
   location: string | null
-  lat: number | null
-  lng: number | null
   embedUrl: string | null
   virtualTourUrl: string | null
   bedrooms: number | null
-  price: string | null
-  priceValue: number | null
+  price: number | null
+  pricePerch: number | null
   city: $Enums.City | null
-  type: $Enums.PropertyType | null
   landType: $Enums.LandType | null
   category: $Enums.PropertyCategory | null
   area: string | null
@@ -90,15 +82,12 @@ export type PropertyCountAggregateOutputType = {
   id: number
   title: number
   location: number
-  lat: number
-  lng: number
   embedUrl: number
   virtualTourUrl: number
   bedrooms: number
   price: number
-  priceValue: number
+  pricePerch: number
   city: number
-  type: number
   landType: number
   category: number
   area: number
@@ -114,32 +103,27 @@ export type PropertyCountAggregateOutputType = {
 
 
 export type PropertyAvgAggregateInputType = {
-  lat?: true
-  lng?: true
   bedrooms?: true
-  priceValue?: true
+  price?: true
+  pricePerch?: true
 }
 
 export type PropertySumAggregateInputType = {
-  lat?: true
-  lng?: true
   bedrooms?: true
-  priceValue?: true
+  price?: true
+  pricePerch?: true
 }
 
 export type PropertyMinAggregateInputType = {
   id?: true
   title?: true
   location?: true
-  lat?: true
-  lng?: true
   embedUrl?: true
   virtualTourUrl?: true
   bedrooms?: true
   price?: true
-  priceValue?: true
+  pricePerch?: true
   city?: true
-  type?: true
   landType?: true
   category?: true
   area?: true
@@ -154,15 +138,12 @@ export type PropertyMaxAggregateInputType = {
   id?: true
   title?: true
   location?: true
-  lat?: true
-  lng?: true
   embedUrl?: true
   virtualTourUrl?: true
   bedrooms?: true
   price?: true
-  priceValue?: true
+  pricePerch?: true
   city?: true
-  type?: true
   landType?: true
   category?: true
   area?: true
@@ -177,15 +158,12 @@ export type PropertyCountAggregateInputType = {
   id?: true
   title?: true
   location?: true
-  lat?: true
-  lng?: true
   embedUrl?: true
   virtualTourUrl?: true
   bedrooms?: true
   price?: true
-  priceValue?: true
+  pricePerch?: true
   city?: true
-  type?: true
   landType?: true
   category?: true
   area?: true
@@ -289,15 +267,12 @@ export type PropertyGroupByOutputType = {
   id: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl: string | null
   bedrooms: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -337,15 +312,12 @@ export type PropertyWhereInput = {
   id?: Prisma.StringFilter<"Property"> | string
   title?: Prisma.StringFilter<"Property"> | string
   location?: Prisma.StringFilter<"Property"> | string
-  lat?: Prisma.FloatFilter<"Property"> | number
-  lng?: Prisma.FloatFilter<"Property"> | number
   embedUrl?: Prisma.StringFilter<"Property"> | string
   virtualTourUrl?: Prisma.StringNullableFilter<"Property"> | string | null
   bedrooms?: Prisma.IntNullableFilter<"Property"> | number | null
-  price?: Prisma.StringFilter<"Property"> | string
-  priceValue?: Prisma.FloatFilter<"Property"> | number
+  price?: Prisma.FloatFilter<"Property"> | number
+  pricePerch?: Prisma.FloatFilter<"Property"> | number
   city?: Prisma.EnumCityFilter<"Property"> | $Enums.City
-  type?: Prisma.EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFilter<"Property"> | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFilter<"Property"> | $Enums.PropertyCategory
   area?: Prisma.StringFilter<"Property"> | string
@@ -367,15 +339,12 @@ export type PropertyOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   location?: Prisma.SortOrder
-  lat?: Prisma.SortOrder
-  lng?: Prisma.SortOrder
   embedUrl?: Prisma.SortOrder
   virtualTourUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   bedrooms?: Prisma.SortOrderInput | Prisma.SortOrder
   price?: Prisma.SortOrder
-  priceValue?: Prisma.SortOrder
+  pricePerch?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   landType?: Prisma.SortOrder
   category?: Prisma.SortOrder
   area?: Prisma.SortOrder
@@ -400,15 +369,12 @@ export type PropertyWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.PropertyWhereInput | Prisma.PropertyWhereInput[]
   title?: Prisma.StringFilter<"Property"> | string
   location?: Prisma.StringFilter<"Property"> | string
-  lat?: Prisma.FloatFilter<"Property"> | number
-  lng?: Prisma.FloatFilter<"Property"> | number
   embedUrl?: Prisma.StringFilter<"Property"> | string
   virtualTourUrl?: Prisma.StringNullableFilter<"Property"> | string | null
   bedrooms?: Prisma.IntNullableFilter<"Property"> | number | null
-  price?: Prisma.StringFilter<"Property"> | string
-  priceValue?: Prisma.FloatFilter<"Property"> | number
+  price?: Prisma.FloatFilter<"Property"> | number
+  pricePerch?: Prisma.FloatFilter<"Property"> | number
   city?: Prisma.EnumCityFilter<"Property"> | $Enums.City
-  type?: Prisma.EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFilter<"Property"> | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFilter<"Property"> | $Enums.PropertyCategory
   area?: Prisma.StringFilter<"Property"> | string
@@ -430,15 +396,12 @@ export type PropertyOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   location?: Prisma.SortOrder
-  lat?: Prisma.SortOrder
-  lng?: Prisma.SortOrder
   embedUrl?: Prisma.SortOrder
   virtualTourUrl?: Prisma.SortOrderInput | Prisma.SortOrder
   bedrooms?: Prisma.SortOrderInput | Prisma.SortOrder
   price?: Prisma.SortOrder
-  priceValue?: Prisma.SortOrder
+  pricePerch?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   landType?: Prisma.SortOrder
   category?: Prisma.SortOrder
   area?: Prisma.SortOrder
@@ -463,15 +426,12 @@ export type PropertyScalarWhereWithAggregatesInput = {
   id?: Prisma.StringWithAggregatesFilter<"Property"> | string
   title?: Prisma.StringWithAggregatesFilter<"Property"> | string
   location?: Prisma.StringWithAggregatesFilter<"Property"> | string
-  lat?: Prisma.FloatWithAggregatesFilter<"Property"> | number
-  lng?: Prisma.FloatWithAggregatesFilter<"Property"> | number
   embedUrl?: Prisma.StringWithAggregatesFilter<"Property"> | string
   virtualTourUrl?: Prisma.StringNullableWithAggregatesFilter<"Property"> | string | null
   bedrooms?: Prisma.IntNullableWithAggregatesFilter<"Property"> | number | null
-  price?: Prisma.StringWithAggregatesFilter<"Property"> | string
-  priceValue?: Prisma.FloatWithAggregatesFilter<"Property"> | number
+  price?: Prisma.FloatWithAggregatesFilter<"Property"> | number
+  pricePerch?: Prisma.FloatWithAggregatesFilter<"Property"> | number
   city?: Prisma.EnumCityWithAggregatesFilter<"Property"> | $Enums.City
-  type?: Prisma.EnumPropertyTypeWithAggregatesFilter<"Property"> | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeWithAggregatesFilter<"Property"> | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryWithAggregatesFilter<"Property"> | $Enums.PropertyCategory
   area?: Prisma.StringWithAggregatesFilter<"Property"> | string
@@ -488,15 +448,12 @@ export type PropertyCreateInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -517,15 +474,12 @@ export type PropertyUncheckedCreateInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -546,15 +500,12 @@ export type PropertyUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -575,15 +526,12 @@ export type PropertyUncheckedUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -604,15 +552,12 @@ export type PropertyCreateManyInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -629,15 +574,12 @@ export type PropertyUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -653,15 +595,12 @@ export type PropertyUncheckedUpdateManyInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -696,15 +635,12 @@ export type PropertyCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   location?: Prisma.SortOrder
-  lat?: Prisma.SortOrder
-  lng?: Prisma.SortOrder
   embedUrl?: Prisma.SortOrder
   virtualTourUrl?: Prisma.SortOrder
   bedrooms?: Prisma.SortOrder
   price?: Prisma.SortOrder
-  priceValue?: Prisma.SortOrder
+  pricePerch?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   landType?: Prisma.SortOrder
   category?: Prisma.SortOrder
   area?: Prisma.SortOrder
@@ -718,25 +654,21 @@ export type PropertyCountOrderByAggregateInput = {
 }
 
 export type PropertyAvgOrderByAggregateInput = {
-  lat?: Prisma.SortOrder
-  lng?: Prisma.SortOrder
   bedrooms?: Prisma.SortOrder
-  priceValue?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  pricePerch?: Prisma.SortOrder
 }
 
 export type PropertyMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   location?: Prisma.SortOrder
-  lat?: Prisma.SortOrder
-  lng?: Prisma.SortOrder
   embedUrl?: Prisma.SortOrder
   virtualTourUrl?: Prisma.SortOrder
   bedrooms?: Prisma.SortOrder
   price?: Prisma.SortOrder
-  priceValue?: Prisma.SortOrder
+  pricePerch?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   landType?: Prisma.SortOrder
   category?: Prisma.SortOrder
   area?: Prisma.SortOrder
@@ -751,15 +683,12 @@ export type PropertyMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   location?: Prisma.SortOrder
-  lat?: Prisma.SortOrder
-  lng?: Prisma.SortOrder
   embedUrl?: Prisma.SortOrder
   virtualTourUrl?: Prisma.SortOrder
   bedrooms?: Prisma.SortOrder
   price?: Prisma.SortOrder
-  priceValue?: Prisma.SortOrder
+  pricePerch?: Prisma.SortOrder
   city?: Prisma.SortOrder
-  type?: Prisma.SortOrder
   landType?: Prisma.SortOrder
   category?: Prisma.SortOrder
   area?: Prisma.SortOrder
@@ -771,10 +700,9 @@ export type PropertyMinOrderByAggregateInput = {
 }
 
 export type PropertySumOrderByAggregateInput = {
-  lat?: Prisma.SortOrder
-  lng?: Prisma.SortOrder
   bedrooms?: Prisma.SortOrder
-  priceValue?: Prisma.SortOrder
+  price?: Prisma.SortOrder
+  pricePerch?: Prisma.SortOrder
 }
 
 export type PropertyScalarRelationFilter = {
@@ -832,14 +760,6 @@ export type PropertyCreatefeaturesInput = {
   set: string[]
 }
 
-export type FloatFieldUpdateOperationsInput = {
-  set?: number
-  increment?: number
-  decrement?: number
-  multiply?: number
-  divide?: number
-}
-
 export type NullableStringFieldUpdateOperationsInput = {
   set?: string | null
 }
@@ -852,12 +772,16 @@ export type NullableIntFieldUpdateOperationsInput = {
   divide?: number
 }
 
-export type EnumCityFieldUpdateOperationsInput = {
-  set?: $Enums.City
+export type FloatFieldUpdateOperationsInput = {
+  set?: number
+  increment?: number
+  decrement?: number
+  multiply?: number
+  divide?: number
 }
 
-export type EnumPropertyTypeFieldUpdateOperationsInput = {
-  set?: $Enums.PropertyType
+export type EnumCityFieldUpdateOperationsInput = {
+  set?: $Enums.City
 }
 
 export type EnumLandTypeFieldUpdateOperationsInput = {
@@ -938,15 +862,12 @@ export type PropertyCreateWithoutCreatedByInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -966,15 +887,12 @@ export type PropertyUncheckedCreateWithoutCreatedByInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1023,15 +941,12 @@ export type PropertyScalarWhereInput = {
   id?: Prisma.StringFilter<"Property"> | string
   title?: Prisma.StringFilter<"Property"> | string
   location?: Prisma.StringFilter<"Property"> | string
-  lat?: Prisma.FloatFilter<"Property"> | number
-  lng?: Prisma.FloatFilter<"Property"> | number
   embedUrl?: Prisma.StringFilter<"Property"> | string
   virtualTourUrl?: Prisma.StringNullableFilter<"Property"> | string | null
   bedrooms?: Prisma.IntNullableFilter<"Property"> | number | null
-  price?: Prisma.StringFilter<"Property"> | string
-  priceValue?: Prisma.FloatFilter<"Property"> | number
+  price?: Prisma.FloatFilter<"Property"> | number
+  pricePerch?: Prisma.FloatFilter<"Property"> | number
   city?: Prisma.EnumCityFilter<"Property"> | $Enums.City
-  type?: Prisma.EnumPropertyTypeFilter<"Property"> | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFilter<"Property"> | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFilter<"Property"> | $Enums.PropertyCategory
   area?: Prisma.StringFilter<"Property"> | string
@@ -1048,15 +963,12 @@ export type PropertyCreateWithoutBlueprintInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1076,15 +988,12 @@ export type PropertyUncheckedCreateWithoutBlueprintInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1120,15 +1029,12 @@ export type PropertyUpdateWithoutBlueprintInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1148,15 +1054,12 @@ export type PropertyUncheckedUpdateWithoutBlueprintInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1176,15 +1079,12 @@ export type PropertyCreateWithoutAgentInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1204,15 +1104,12 @@ export type PropertyUncheckedCreateWithoutAgentInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1248,15 +1145,12 @@ export type PropertyUpdateWithoutAgentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1276,15 +1170,12 @@ export type PropertyUncheckedUpdateWithoutAgentInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1304,15 +1195,12 @@ export type PropertyCreateWithoutStatisticsInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1332,15 +1220,12 @@ export type PropertyUncheckedCreateWithoutStatisticsInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1376,15 +1261,12 @@ export type PropertyUpdateWithoutStatisticsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1404,15 +1286,12 @@ export type PropertyUncheckedUpdateWithoutStatisticsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1432,15 +1311,12 @@ export type PropertyCreateWithoutReviewsInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1460,15 +1336,12 @@ export type PropertyUncheckedCreateWithoutReviewsInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1504,15 +1377,12 @@ export type PropertyUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1532,15 +1402,12 @@ export type PropertyUncheckedUpdateWithoutReviewsInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1560,15 +1427,12 @@ export type PropertyCreateManyCreatedByInput = {
   id?: string
   title: string
   location: string
-  lat: number
-  lng: number
   embedUrl: string
   virtualTourUrl?: string | null
   bedrooms?: number | null
-  price: string
-  priceValue: number
+  price: number
+  pricePerch: number
   city: $Enums.City
-  type: $Enums.PropertyType
   landType: $Enums.LandType
   category: $Enums.PropertyCategory
   area: string
@@ -1584,15 +1448,12 @@ export type PropertyUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1612,15 +1473,12 @@ export type PropertyUncheckedUpdateWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1640,15 +1498,12 @@ export type PropertyUncheckedUpdateManyWithoutCreatedByInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   title?: Prisma.StringFieldUpdateOperationsInput | string
   location?: Prisma.StringFieldUpdateOperationsInput | string
-  lat?: Prisma.FloatFieldUpdateOperationsInput | number
-  lng?: Prisma.FloatFieldUpdateOperationsInput | number
   embedUrl?: Prisma.StringFieldUpdateOperationsInput | string
   virtualTourUrl?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   bedrooms?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
-  price?: Prisma.StringFieldUpdateOperationsInput | string
-  priceValue?: Prisma.FloatFieldUpdateOperationsInput | number
+  price?: Prisma.FloatFieldUpdateOperationsInput | number
+  pricePerch?: Prisma.FloatFieldUpdateOperationsInput | number
   city?: Prisma.EnumCityFieldUpdateOperationsInput | $Enums.City
-  type?: Prisma.EnumPropertyTypeFieldUpdateOperationsInput | $Enums.PropertyType
   landType?: Prisma.EnumLandTypeFieldUpdateOperationsInput | $Enums.LandType
   category?: Prisma.EnumPropertyCategoryFieldUpdateOperationsInput | $Enums.PropertyCategory
   area?: Prisma.StringFieldUpdateOperationsInput | string
@@ -1695,15 +1550,12 @@ export type PropertySelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   id?: boolean
   title?: boolean
   location?: boolean
-  lat?: boolean
-  lng?: boolean
   embedUrl?: boolean
   virtualTourUrl?: boolean
   bedrooms?: boolean
   price?: boolean
-  priceValue?: boolean
+  pricePerch?: boolean
   city?: boolean
-  type?: boolean
   landType?: boolean
   category?: boolean
   area?: boolean
@@ -1726,15 +1578,12 @@ export type PropertySelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   title?: boolean
   location?: boolean
-  lat?: boolean
-  lng?: boolean
   embedUrl?: boolean
   virtualTourUrl?: boolean
   bedrooms?: boolean
   price?: boolean
-  priceValue?: boolean
+  pricePerch?: boolean
   city?: boolean
-  type?: boolean
   landType?: boolean
   category?: boolean
   area?: boolean
@@ -1752,15 +1601,12 @@ export type PropertySelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   id?: boolean
   title?: boolean
   location?: boolean
-  lat?: boolean
-  lng?: boolean
   embedUrl?: boolean
   virtualTourUrl?: boolean
   bedrooms?: boolean
   price?: boolean
-  priceValue?: boolean
+  pricePerch?: boolean
   city?: boolean
-  type?: boolean
   landType?: boolean
   category?: boolean
   area?: boolean
@@ -1778,15 +1624,12 @@ export type PropertySelectScalar = {
   id?: boolean
   title?: boolean
   location?: boolean
-  lat?: boolean
-  lng?: boolean
   embedUrl?: boolean
   virtualTourUrl?: boolean
   bedrooms?: boolean
   price?: boolean
-  priceValue?: boolean
+  pricePerch?: boolean
   city?: boolean
-  type?: boolean
   landType?: boolean
   category?: boolean
   area?: boolean
@@ -1799,7 +1642,7 @@ export type PropertySelectScalar = {
   userId?: boolean
 }
 
-export type PropertyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "location" | "lat" | "lng" | "embedUrl" | "virtualTourUrl" | "bedrooms" | "price" | "priceValue" | "city" | "type" | "landType" | "category" | "area" | "description" | "images" | "features" | "postedDate" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["property"]>
+export type PropertyOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "location" | "embedUrl" | "virtualTourUrl" | "bedrooms" | "price" | "pricePerch" | "city" | "landType" | "category" | "area" | "description" | "images" | "features" | "postedDate" | "createdAt" | "updatedAt" | "userId", ExtArgs["result"]["property"]>
 export type PropertyInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   blueprint?: boolean | Prisma.Property$blueprintArgs<ExtArgs>
   agent?: boolean | Prisma.Property$agentArgs<ExtArgs>
@@ -1828,15 +1671,12 @@ export type $PropertyPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     id: string
     title: string
     location: string
-    lat: number
-    lng: number
     embedUrl: string
     virtualTourUrl: string | null
     bedrooms: number | null
-    price: string
-    priceValue: number
+    price: number
+    pricePerch: number
     city: $Enums.City
-    type: $Enums.PropertyType
     landType: $Enums.LandType
     category: $Enums.PropertyCategory
     area: string
@@ -2278,15 +2118,12 @@ export interface PropertyFieldRefs {
   readonly id: Prisma.FieldRef<"Property", 'String'>
   readonly title: Prisma.FieldRef<"Property", 'String'>
   readonly location: Prisma.FieldRef<"Property", 'String'>
-  readonly lat: Prisma.FieldRef<"Property", 'Float'>
-  readonly lng: Prisma.FieldRef<"Property", 'Float'>
   readonly embedUrl: Prisma.FieldRef<"Property", 'String'>
   readonly virtualTourUrl: Prisma.FieldRef<"Property", 'String'>
   readonly bedrooms: Prisma.FieldRef<"Property", 'Int'>
-  readonly price: Prisma.FieldRef<"Property", 'String'>
-  readonly priceValue: Prisma.FieldRef<"Property", 'Float'>
+  readonly price: Prisma.FieldRef<"Property", 'Float'>
+  readonly pricePerch: Prisma.FieldRef<"Property", 'Float'>
   readonly city: Prisma.FieldRef<"Property", 'City'>
-  readonly type: Prisma.FieldRef<"Property", 'PropertyType'>
   readonly landType: Prisma.FieldRef<"Property", 'LandType'>
   readonly category: Prisma.FieldRef<"Property", 'PropertyCategory'>
   readonly area: Prisma.FieldRef<"Property", 'String'>
