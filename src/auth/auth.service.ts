@@ -1,108 +1,124 @@
 import {
   Injectable,
-  BadRequestException,
   UnauthorizedException,
   ConflictException,
+  InternalServerErrorException,
 } from '@nestjs/common';
-import { createClient } from '@supabase/supabase-js';
-import { ConfigService } from '@nestjs/config';
+import { JwtService } from '@nestjs/jwt';
 import { PrismaService } from '../prisma/prisma.service';
+import { SupabaseService } from '../supabase/supabase.service';
 import { RegisterDto } from './dto/register.dto';
 import { LoginDto } from './dto/login.dto';
 
 @Injectable()
 export class AuthService {
-  private supabase;
-
   constructor(
-    private config: ConfigService,
     private prisma: PrismaService,
-  ) {
-    this.supabase = createClient(
-      config.get<string>('SUPABASE_URL') || '',
-      config.get<string>('SUPABASE_ANON_KEY') || '',
-    );
-  }
+    private supabase: SupabaseService,
+    private jwtService: JwtService,
+  ) {}
 
   async register(dto: RegisterDto) {
-    const existingEmail = await this.prisma.user.findUnique({
-      where: { email: dto.email },
-    });
-    if (existingEmail) throw new ConflictException('Email already in use');
+    // 1. Register with Supabase Auth
+    const { data, error } = await this.supabase
+      .getAdminClient()
+      .auth.admin.createUser({
+        email: dto.email,
+        password: dto.password,
+        email_confirm: true,
+      });
 
-    const existingUsername = await this.prisma.user.findUnique({
-      where: { username: dto.username },
-    });
-    if (existingUsername)
-      throw new ConflictException('Username already in use');
+    if (error) {
+      if (error.message.includes('already registered')) {
+        throw new ConflictException('Email already exists');
+      }
+      throw new InternalServerErrorException(error.message);
+    }
 
-    const existingEmployeeId = await this.prisma.user.findUnique({
-      where: { employeeId: dto.employeeId },
-    });
-    if (existingEmployeeId)
-      throw new ConflictException('Employee ID already in use');
-
-    // 1. Create user in Supabase Auth
-    const { data, error } = await this.supabase.auth.signUp({
-      email: dto.email,
-      password: dto.password,
-    });
-
-    if (error) throw new BadRequestException(error.message);
-
-    // 2. Save extra user info in DB
+    // 2. Save user in PostgreSQL via Prisma
     const user = await this.prisma.user.create({
       data: {
-        supabaseId: data.user.id,
-        username: dto.username,
         email: dto.email,
+        username: dto.username,
+        supabaseId: data.user.id,
         employeeId: dto.employeeId,
       },
     });
 
-    return { message: 'Registration successful. Check email to verify.', user };
-  }
-
-  async login(dto: LoginDto) {
-    const { data, error } = await this.supabase.auth.signInWithPassword({
-      email: dto.email,
-      password: dto.password,
-    });
-
-    const userData = await this.getProfile(data.session.access_token);
-
-    console.log('Login data:', data);
-    if (error) throw new UnauthorizedException(error.message);
+    // 3. Generate JWT
+    const token = this.generateToken(user.id, user.email);
 
     return {
-      message: 'Login successful',
-      user: userData,
-      access_token: data.session.access_token,
-      refresh_token: data.session.refresh_token,
+      user: {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        employeeId: user.employeeId,
+      },
+      access_token: token,
     };
   }
 
-  async getProfile(token: string) {
-    const user = await this.verifyToken(token);
-    const profile = await this.prisma.user.findUnique({
-      where: { supabaseId: user.id },
+  async login(dto: LoginDto) {
+    // 1. Authenticate with Supabase
+    const { data, error } = await this.supabase
+      .getClient()
+      .auth.signInWithPassword({
+        email: dto.email,
+        password: dto.password,
+      });
+
+    if (error || !data.user) {
+      throw new UnauthorizedException('Invalid credentials');
+    }
+
+    // 2. Find user in our database
+    const user = await this.prisma.user.findUnique({
+      where: { email: dto.email },
     });
-    return profile;
+
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    // 3. Generate JWT
+    const token = this.generateToken(user.id, user.email);
+
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        username: user.username,
+        employeeId: user.employeeId,
+      },
+      access_token: token,
+      supabase_token: data.session.access_token,
+    };
   }
 
-  async verifyToken(token: string) {
-    const { data, error } = await this.supabase.auth.getUser(token);
-    if (error || !data.user) throw new UnauthorizedException('Invalid token');
-    return data.user;
+  async getProfile(userId: string) {
+    const user = await this.prisma.user.findUnique({
+      where: { id: userId },
+    });
+
+    if (!user) {
+      throw new UnauthorizedException('User not found');
+    }
+
+    return {
+      id: user.id,
+      email: user.email,
+      username: user.username,
+      employeeId: user.employeeId,
+    };
   }
 
-  async logout(token: string) {
-    const client = createClient(
-      this.config.get<string>('SUPABASE_URL') || '',
-      this.config.get<string>('SUPABASE_ANON_KEY') || '',
-      { global: { headers: { Authorization: `Bearer ${token}` } } },
-    );
-    await client.auth.signOut();
+  async logout(supabaseToken: string) {
+    await this.supabase.getClient().auth.signOut();
     return { message: 'Logged out successfully' };
+  }
+
+  private generateToken(userId: string, email: string): string {
+    return this.jwtService.sign({ sub: userId, email });
   }
 }

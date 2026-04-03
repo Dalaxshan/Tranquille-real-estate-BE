@@ -31,15 +31,12 @@ model Property {
   id              String   @id @default(uuid())
   title           String
   location        String
-  lat             Float
-  lng             Float
   embedUrl        String
   virtualTourUrl  String?
   bedrooms        Int?
-  price           String
-  priceValue      Float
+  price           Float
+  pricePerch      Float
   city            City
-  type            PropertyType
   landType        LandType
   category        PropertyCategory
   area            String
@@ -147,9 +144,11 @@ enum PropertyType {
 enum LandType {
   Sale
   Rent
+  Sold
 }
 
 enum PropertyCategory {
+  Land
   Agricultural
   Residential
   Commercial

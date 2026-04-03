@@ -6,24 +6,21 @@ import {
   Delete,
   Body,
   Param,
-  // UseGuards,
+  UseGuards,
   Request,
 } from '@nestjs/common';
 import { BranchesService } from './branches.service';
 import { CreateBranchDto } from './dto/create-branch.dto';
-// import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 
 @Controller('branches')
 export class BranchesController {
   constructor(private branchesService: BranchesService) {}
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Post()
   create(@Request() req, @Body() dto: CreateBranchDto) {
-    return this.branchesService.create(
-      '985fdf80-5054-427b-bb1a-3c197938b78d',
-      dto,
-    );
+    return this.branchesService.create(req.user.id, dto);
   }
 
   @Get()
@@ -36,26 +33,19 @@ export class BranchesController {
     return this.branchesService.findOne(id);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Patch(':id')
   update(
     @Param('id') id: string,
     @Request() req,
     @Body() dto: Partial<CreateBranchDto>,
   ) {
-    return this.branchesService.update(
-      id,
-      '985fdf80-5054-427b-bb1a-3c197938b78d',
-      dto,
-    );
+    return this.branchesService.update(id, req.user.id, dto);
   }
 
-  // @UseGuards(JwtAuthGuard)
+  @UseGuards(JwtAuthGuard)
   @Delete(':id')
   remove(@Param('id') id: string, @Request() req) {
-    return this.branchesService.remove(
-      id,
-      '985fdf80-5054-427b-bb1a-3c197938b78d',
-    );
+    return this.branchesService.remove(id, req.user.id);
   }
 }

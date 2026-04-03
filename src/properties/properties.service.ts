@@ -10,12 +10,11 @@ import { CreatePropertyDto } from './dto/create-property.dto';
 export class PropertiesService {
   constructor(private prisma: PrismaService) {}
 
-  async create(userId: string, dto: CreatePropertyDto) {
+  async create(dto: CreatePropertyDto) {
     const { blueprint, agent, statistics, ...rest } = dto;
     return await this.prisma.property.create({
       data: {
         ...rest,
-        userId,
         ...(blueprint && { blueprint: { create: blueprint } }),
         ...(agent && { agent: { create: agent } }),
         ...(statistics && {
@@ -40,7 +39,7 @@ export class PropertiesService {
     return await this.prisma.property.findMany({
       where: {
         ...(filters?.city && { city: filters.city as any }),
-        ...(filters?.type && { type: filters.type as any }),
+        ...(filters?.type && { landType: filters.type as any }),
         ...(filters?.category && { category: filters.category as any }),
       },
       include: {
@@ -58,7 +57,7 @@ export class PropertiesService {
       include: {
         blueprint: true,
         agent: true,
-        // statistics: { include: { views: true, priceHistory: true } },
+        statistics: { include: { views: true, priceHistory: true } },
         reviews: true,
       },
     });
@@ -72,30 +71,20 @@ export class PropertiesService {
     if (!property) throw new NotFoundException('Property not found');
     if (property.userId !== userId) throw new ForbiddenException();
 
-    const { blueprint, agent, statistics, ...rest } = dto || {};
+    const { blueprint, agent, statistics, ...rest } = dto;
 
-    const {
-      id: _id,
-      createdAt,
-      updatedAt,
-      userId: _userId,
-      reviews,
-      ...updateData
-    } = rest as any;
-
-    // Strip id and propertyId from blueprint/agent before passing to Prisma
     const cleanBlueprint = blueprint
-      ? (({ id, propertyId, ...b }) => b)(blueprint as any)
+      ? (({ id, propertyId, ...b }: any) => b)(blueprint)
       : null;
 
     const cleanAgent = agent
-      ? (({ id, propertyId, ...a }) => a)(agent as any)
+      ? (({ id, propertyId, ...a }: any) => a)(agent)
       : null;
 
     return await this.prisma.property.update({
       where: { id },
       data: {
-        ...updateData,
+        ...rest,
         ...(cleanBlueprint && {
           blueprint: {
             upsert: {
