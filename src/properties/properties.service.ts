@@ -51,21 +51,21 @@ export class PropertiesService {
     });
   }
 
-  async findOne(id: string) {
+  async findOne(id: number) {
     const property = await this.prisma.property.findUnique({
       where: { id },
       include: {
         blueprint: true,
         agent: true,
         statistics: { include: { views: true, priceHistory: true } },
-        reviews: true,
+        // reviews: true,
       },
     });
     if (!property) throw new NotFoundException('Property not found');
     return property;
   }
 
-  async update(id: string, userId: string, dto: Partial<CreatePropertyDto>) {
+  async update(id: number, userId: string, dto: Partial<CreatePropertyDto>) {
     const property = await this.prisma.property.findUnique({ where: { id } });
 
     if (!property) throw new NotFoundException('Property not found');
@@ -111,7 +111,7 @@ export class PropertiesService {
     });
   }
 
-  async remove(id: string, userId: string) {
+  async remove(id: number, userId: string) {
     const property = await this.prisma.property.findUnique({ where: { id } });
     if (!property) throw new NotFoundException('Property not found');
     if (property.userId !== userId) throw new ForbiddenException();
