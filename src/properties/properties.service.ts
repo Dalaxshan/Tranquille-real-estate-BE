@@ -43,10 +43,10 @@ export class PropertiesService {
         ...(filters?.category && { category: filters.category as any }),
       },
       include: {
-        blueprint: true,
         agent: true,
-        statistics: { include: { views: true, priceHistory: true } },
-        reviews: true,
+        _count: {
+          select: { reviews: true },
+        },
       },
     });
   }
@@ -57,8 +57,13 @@ export class PropertiesService {
       include: {
         blueprint: true,
         agent: true,
-        statistics: { include: { views: true, priceHistory: true } },
-        // reviews: true,
+        reviews: {
+          orderBy: { date: 'desc' },
+          take: 1,
+        },
+        _count: {
+          select: { reviews: true },
+        },
       },
     });
     if (!property) throw new NotFoundException('Property not found');
